@@ -1,16 +1,25 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.ts"],
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "target": "es6",
+    "module": "commonjs",
+    "rootDir": "src",
+    "outDir": "dist",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "lib": ["es6", "dom"],
+    "esModuleInterop": true
   },
 
   "references": [
     {
       "path": "./tsconfig.config.json"
     }
+  ],
+
+
+  "exclude": [
+    "node_modules"
   ]
 }
