@@ -12,45 +12,47 @@ const AxiosInstance = axios.create(); // Create a new Axios Instance
 
 function log() {
   const url = 'https://www.premierleague.com/stats/top/players/goals?se=-1&cl=-1&iso=-1&po=-1?se=-1';
+  const url1 = 'https://github.com/AlberTgarY/SensatUrban_albert'
   // Send an async HTTP Get request to the url
 
     
   // This is the structure of the player data we recieve
   interface PlayerData {
-    rank: number; // 1 - 20 rank
     name: string;
-    nationality: string;
-    goals: number;
   }
 
   // Send an async HTTP Get request to the url
-  AxiosInstance.get(url)
+    AxiosInstance.get(url1)
     .then( // Once we have data returned ...
       response => {
         const html = response.data; // Get the HTML from the HTTP request
         const $ = cheerio.load(html); // Load the HTML string into cheerio
-        const statsTable: Cheerio<any> = $('.statsTableContainer > tr'); // Parse the HTML and extract just whatever code contains .statsTableContainer and has tr inside
+        const statsTable: Cheerio<any> = $(".Details-content--hidden-not-important.js-navigation-container.js-active-navigation-container.d-md-block"); // Parse the HTML and extract just whatever code contains .statsTableContainer and has tr inside
+        const statsTable1: Cheerio<any> = $(".js-active-navigation-container.d-md-block > div");
+        
         const topScorers: PlayerData[] = [];
-
+        // for (let i = 0; i < statsTable1.length ; i++) {
+        //   const name: string = $(elem).find('div:nth-child('+'3'+') > div.flex-auto.min-width-0.col-md-2.mr-3 > span').text(); // Parse the name
+        //   topScorers.push({
+        //     name,
+        //   })
+        //   console.log ("Block statement execution no." + i);
+        // }
         statsTable.each((i, elem) => {
-          const rank: number = parseInt($(elem).find('.rank > strong').text()); // Parse the rank
-          const name: string = $(elem).find('.playerName > strong').text(); // Parse the name
-          const nationality: string = $(elem).find('.playerCountry').text(); // Parse the country
-          const goals: number = parseInt($(elem).find('.mainStat').text()); // Parse the number of goals
-          topScorers.push({
-            rank,
-            name,
-            nationality,
-            goals
-          })
+          for (let i = 0; i <= statsTable1.length; i++) {
+            const name: string = $(elem).find('div:nth-child('+i.toString()+') > div.flex-auto.min-width-0.col-md-2.mr-3 > span').text(); // Parse the name
+            topScorers.push({
+              name,
+            })
+          }
         })
-
+        
         console.log(topScorers);
       }
+      
     )
     .catch(console.error); // Error handling
 };
-
 
 
 </script>
