@@ -11,6 +11,7 @@
     "lib": ["es6", "dom"],
     "esModuleInterop": true
   },
+  "allowJs":true,
 
   "references": [
     {
