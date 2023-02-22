@@ -1,10 +1,7 @@
-
 <template>
-  <!-- <Header />
-  <div class="container my-3">
-    <router-view />
-  </div> -->
+   
   <div class="container text-center">
+  
   <div class="row justify-content-md-center">
     <div class="col-md-auto">
       <Header />

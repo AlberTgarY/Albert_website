@@ -18,7 +18,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div style="width: 150px">
+  <div style="width: 150px" >
     <router-link
       :to="to"
       class="nav-link"
